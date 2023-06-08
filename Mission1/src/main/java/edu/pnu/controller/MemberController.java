@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.pnu.domain.MemberVO;
 import edu.pnu.service.MemberService;
 
-
+//commit test
 @RestController
 public class MemberController {
 
