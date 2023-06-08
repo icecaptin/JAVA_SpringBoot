@@ -1,0 +1,18 @@
+package com.rubypaper.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class BoardController {
+	public BoardController() {
+		System.out.println("=".repeat(50));
+		System.out.println("BoardController가 생성되엇습니다");
+		System.out.println("=".repeat(50));
+	}
+	
+	@GetMapping("/hello")
+	public String hello(String name) {
+		return "Hello : " + name;
+	}
+}
