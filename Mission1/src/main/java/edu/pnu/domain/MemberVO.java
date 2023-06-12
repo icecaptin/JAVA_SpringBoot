@@ -3,56 +3,55 @@ package edu.pnu.domain;
 import java.util.Date;
 
 public class MemberVO {
-    private int id;
+    private Integer id;
     private String pass;
     private String name;
     private Date regidate;
 
     public MemberVO() {
-		// TODO Auto-generated constructor stub
-	}
+    }
 
-	public MemberVO(int id, String pass, String name, Date regidate) {
-		this.id = id;
-		this.pass = pass;
-		this.name = name;
-		this.regidate = regidate;
-	}
+    public MemberVO(Integer id, String pass, String name, Date regidate) {
+        this.id = id;
+        this.pass = pass;
+        this.name = name;
+        this.regidate = regidate;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getPass() {
-		return pass;
-	}
+    public String getPass() {
+        return pass;
+    }
 
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Date getRegidate() {
-		return regidate;
-	}
+    public Date getRegidate() {
+        return regidate;
+    }
 
-	public void setRegidate(Date regidate) {
-		this.regidate = regidate;
-	}
+    public void setRegidate(Date regidate) {
+        this.regidate = regidate;
+    }
 
-	@Override
-	public String toString() {
-		return "MemberVO [id=" + id + ", pass=" + pass + ", name=" + name + ", regidate=" + regidate + "]";
-	}    
+    @Override
+    public String toString() {
+        return "MemberVO [id=" + id + ", pass=" + pass + ", name=" + name + ", regidate=" + regidate + "]";
+    }
 }
