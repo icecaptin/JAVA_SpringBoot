@@ -2,43 +2,43 @@ package edu.pnu.dao;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
+import edu.pnu.dao.MemberDaoH2Impl;
+import edu.pnu.dao.MemberInterface;
 import edu.pnu.domain.MemberVO;
 
-@Service
 public class MemberService {
-	
-	private MemberInterface memberDao;
-//	private MemberInterface memberDao_List;
-	
-	public MemberService(MemberInterface memberDao) {
-		this.memberDao = memberDao;
-//	    this.memberDao_List = memberDao_List;
+
+	private MemberInterface memberInterface;
+	private List<MemberVO> list;
+
+	public MemberService() { // 이 둘을 주석처리로 왔다리 갔다리 할꾸얌
+		memberInterface = new MemberDaoH2Impl();
+
+//		memberInterface = new MemberDaoListImpl();		
 	}
-	
-	public MemberVO getMember(Integer id) {
-		return memberDao.getMember(id);
-//		return memberDao_List.getMember(id);
-	}
-	
+
 	public List<MemberVO> getMembers() {
-		return memberDao.getMembers();
-//		return memberDao_List.getMembers();
+		
+		return memberInterface.getMembers();
 	}
-	
+
+	public MemberVO getMember(Integer id) {
+		return memberInterface.getMember(id);
+	}
+
 	public MemberVO addMember(MemberVO member) {
-		return memberDao.addMember(member);
-//		return memberDao_List.addMember(member);
+
+		return memberInterface.addMember(member);
 	}
-	
+
 	public MemberVO updateMember(MemberVO member) {
-		return memberDao.updateMember(member);
-//		return memberDao_List.updateMember(member);
+
+		return memberInterface.updateMember(member);
 	}
-	
+
 	public int deleteMember(Integer id) {
-		return memberDao.deleteMember(id);
-//		return memberDao_List.getMember(id);
+
+		return memberInterface.deleteMember(id);
 	}
+
 }
