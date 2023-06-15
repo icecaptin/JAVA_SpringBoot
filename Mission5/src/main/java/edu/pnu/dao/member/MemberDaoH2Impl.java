@@ -122,9 +122,8 @@ public class MemberDaoH2Impl implements MemberInterface {
 		try {
 			java.util.Date currentDate = new java.util.Date();
 			java.sql.Timestamp timestamp = new java.sql.Timestamp(currentDate.getTime());
-			String sqlString = String.format(
-					"insert into member (id, name, age, nickname) values (%d, '%s', %d, '%s')", id,
-					member.getName(), member.getAge(), member.getNickname(), timestamp);
+			String sqlString = String.format("insert into member (id, name, age, nickname) values (%d, '%s', %d, '%s')",
+					id, member.getName(), member.getAge(), member.getNickname(), timestamp);
 			st = con.createStatement();
 			Map<String, Object> ret = new HashMap<>();
 			if (st.executeUpdate(sqlString) == 1) {
@@ -153,8 +152,8 @@ public class MemberDaoH2Impl implements MemberInterface {
 	public Map<String, Object> updateMember(MemberVO member) {
 		Statement st = null;
 		try {
-			String sqlString = String.format("update member set name='%s',age='%s' where id=%d", member.getName(),
-					member.getAge(), member.getId());
+			String sqlString = String.format("update member set name='%s', age='%s', nickname='%s' where id=%d",
+					member.getName(), member.getAge(), member.getNickname(), member.getId());
 			st = con.createStatement();
 
 			Map<String, Object> ret = new HashMap<>();
@@ -184,12 +183,17 @@ public class MemberDaoH2Impl implements MemberInterface {
 	public Map<String, Object> deleteMember(Integer id) {
 		Statement st = null;
 		try {
-			String sqlString = String.format("delete from member where id=%d", id);
-			st = con.createStatement();
+			if (id == null) {
+				throw new IllegalArgumentException("Invalid ID: ID cannot be null.");
+			}
 
 			Map<String, Object> map = getMember(id);
-			if (map.get("data") == null)
-				return null;
+			if (map.get("data") == null) {
+				throw new IllegalArgumentException("Member not found with ID: " + id);
+			}
+
+			String sqlString = String.format("delete from member where id=%d", id);
+			st = con.createStatement();
 
 			Map<String, Object> ret = new HashMap<>();
 			if (st.executeUpdate(sqlString) == 1) {
@@ -200,6 +204,8 @@ public class MemberDaoH2Impl implements MemberInterface {
 				ret.put("data", null);
 			}
 			return ret;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

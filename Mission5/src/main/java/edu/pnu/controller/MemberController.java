@@ -58,8 +58,10 @@ public class MemberController {
 	}
 	
 	@DeleteMapping("/member/{id}")
-	public MemberVO deleteMember(@PathVariable Integer id) {
-		log.info(String.format("MemberController - deleteMember(%ㅇ)가 호출됨.", id));
-		return memberService.deleteMember(id);
+	public void deleteMember(@PathVariable Integer id) {
+	    log.info(String.format("MemberController - deleteMember(%d)가 호출됨.", id));
+	    memberService.deleteMember(id);
 	}
+
+
 }

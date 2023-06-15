@@ -22,3 +22,7 @@ get,select id, name, age, nickname, regidate from member order by id asc,true
 get,select id, name, age, nickname, regidate from member where id=2,true
 get,select id, name, age, nickname, regidate from member where id=2,true
 post,insert into member (id, name, age, nickname) values (54, 'name77', 30, 'firstnickname22'),true
+post,insert into member (id, name, age, nickname) values (55, 'name88', 32, 'firstnickname155'),true
+post,insert into member (id, name, age, nickname) values (56, 'name88', 12, 'firstnickname15'),true
+put,update member set name='name88', age='22', nickname='firstnickname15edit' where id=1,true
+post,insert into member (id, name, age, nickname) values (57, 'yang12345', 123, 'seongbooyang'),true
