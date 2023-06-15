@@ -1,3 +1,24 @@
 get,select * from member order by id asc,true
 get,select * from member where id=1,true
 get,select * from member order by id asc,true
+post,insert into member (id,name,age,nickname) values (41,'name33', 26,'null'),true
+post,insert into member (id,name,age,nickname) values (42,'name55', 25,'null'),true
+post,insert into member (id,name,age,nickname) values (43,'name55', 25,'firstnickname'),true
+post,insert into member (id,name,age,nickname) values (44,'name77', 30,'firstnickname22'),true
+post,insert into member (id,name,age,nickname) values (45,'name77', 30,'firstnickname22'),true
+get,select * from member order by id asc,true
+get,select * from member where id=2,true
+post,insert into member (id,name,age,nickname) values (46,'name77', 30,'firstnickname22'),true
+post,insert into member (id,name,age,nickname) values (47,'name77', 30,'firstnickname22'),true
+post,insert into member (id,name,age,nickname) values (48,'name77', 30,'firstnickname22'),true
+post,insert into member (id,name,age,nickname) values (49,'name77', 30,'firstnickname22'),true
+post,insert into member (id,name,age,nickname) values (50,'name77', 30,'firstnickname22'),true
+post,insert into member (id,name,age,nickname) values (51,'name77', 30,'firstnickname22'),true
+post,insert into member (id,name,age,nickname) values (52,'name77', 30,'firstnickname22'),true
+post,insert into member (id,name,age,nickname) values (53,'name77', 30,'firstnickname22'),true
+get,select id, name, age, nickname, regidate from member where id=2,true
+get,select id, name, age, nickname, regidate from member order by id asc,true
+get,select id, name, age, nickname, regidate from member order by id asc,true
+get,select id, name, age, nickname, regidate from member where id=2,true
+get,select id, name, age, nickname, regidate from member where id=2,true
+post,insert into member (id, name, age, nickname) values (54, 'name77', 30, 'firstnickname22'),true

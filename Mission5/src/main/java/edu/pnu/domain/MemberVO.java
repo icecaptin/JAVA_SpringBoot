@@ -3,19 +3,19 @@ package edu.pnu.domain;
 import java.util.Date;
 
 public class MemberVO {
-	private int id;
-	private String name;
-	private int age;
-	private String nickname;
-	private Date regidate;
+    private Integer id;
+    private String name;
+    private int age;
+    private String nickname;
+    private Date regidate;
 
-	public MemberVO(int id, String name, int age, String nickname, Date regidate) {
-		this.id = id;
-		this.age = age;
-		this.name = name;
-		this.regidate = regidate;
-		this.nickname = nickname;
-	}
+    public MemberVO(Integer id, String name, int age, String nickname, Date regidate) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.nickname = nickname;
+        this.regidate = regidate;
+    }
 
 	public int getId() {
 		return id;
