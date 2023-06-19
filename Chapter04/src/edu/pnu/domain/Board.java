@@ -22,7 +22,6 @@ public class Board {
 	private String content;
 	@Temporal(TemporalType.DATE)
 	private Date createDate;
-
 	private Long cnt;
 
 	public Long getSeq() {
