@@ -1,13 +1,15 @@
 package edu.pnu;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import edu.pnu.domain.Board;
 import edu.pnu.persistence.BoardRepository;
@@ -74,6 +76,46 @@ class BoardRepositoryTest {
 		List<Board> list = boardRepo.findAll();
 		for (Board b : list) {
 			System.out.println(b);
+		}
+	}
+	
+	@Test
+	public void boardRepositoryTest() {
+		//select b from Board b where b.title like %?1% order by b.seq DESC
+		boardRepo.boardRepositoryTest("title1");
+	}
+	
+	@Test
+	public void testQueryAnnotationTest2() {
+		List<Board> list = boardRepo.testQueryAnnotationTest2("title2");
+		for (Board b : list) {
+			System.out.println(b );
+		}
+	}
+	
+	@Test
+	public void testQueryAnnotationTest3() {
+		List<Object[]> list = boardRepo.queryAnnotationTest3("title2");
+		for (Object[] b : list) {
+			System.out.println(b);
+		}
+	}
+	
+	@Test
+	public void testQueryAnnotationTest4() {
+		List<Object[]> list = boardRepo.queryAnnotationTest4("title2");
+		for (Object[] b : list) {
+			System.out.println(Arrays.toString(b));
+		}
+	}
+	@Test
+	public void testQueryAnnotationTest5() {
+		Pageable paging = PageRequest.of(0, 3, Sort.Direction.DESC, "seq");
+		List<Board> boardList = boardRepo.testQueryAnnotationTest5(paging);
+		
+		System.out.println("검색결과:");
+		for (Board board : boardList) {
+			System.out.println("-->" + board.toString());
 		}
 	}
 }

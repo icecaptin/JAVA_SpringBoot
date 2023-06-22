@@ -20,17 +20,19 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+
+
 @Entity
 public class Board {
+	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long seq;
 	private String title;
 	private String writer;
 	private String content;
-	@Temporal(value = TemporalType.TIMESTAMP)
+	@Temporal (TemporalType.TIMESTAMP)
 	private Date createDate;
 	private Long cnt;
-	private int cnt2;
 }
