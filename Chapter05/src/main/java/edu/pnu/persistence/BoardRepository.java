@@ -38,4 +38,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     @Query("select b from Board b order by b.seq DESC")
     List<Board> queryAnnotationTest5(Pageable paging);
+
+	List<Board> queryAnnotationTest1(String searchKeyword);
 }
