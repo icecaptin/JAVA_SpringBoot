@@ -9,22 +9,23 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "busan_place") // 테이블명을 명시적으로 지정
+@Table(name = "busanplace")
 public class BusanPlace {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long uc_seq;
+    private Long id;
+
     private String name;
     private String gugun;
-    
     private String lat;
     private String lng;
-    
     private String travel_place;
     private String title;
     private String subtitle;
     private String addr1;
+    private String place_category;
+    private String tags;
     private String homepage_u;
     private String trfc_info;
     private String usage_day;
