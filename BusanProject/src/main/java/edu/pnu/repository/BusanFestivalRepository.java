@@ -13,4 +13,6 @@ import edu.pnu.entity.BusanFestival;
 public interface BusanFestivalRepository extends JpaRepository<BusanFestival, Long> {
     @Query("SELECT f FROM BusanFestival f WHERE f.startDate >= CURRENT_DATE ORDER BY f.startDate ASC")
     List<BusanFestival> findUpcomingFestivals(Pageable pageable);
+    
+    BusanFestival findById(long id);
 }

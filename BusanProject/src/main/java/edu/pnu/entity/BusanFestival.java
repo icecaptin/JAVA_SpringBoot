@@ -18,7 +18,7 @@ public class BusanFestival {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	private String gugun;
 	private String name;
 	private String subname;

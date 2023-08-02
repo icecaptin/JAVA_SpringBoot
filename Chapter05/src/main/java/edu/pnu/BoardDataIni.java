@@ -1,7 +1,6 @@
 package edu.pnu;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 import org.junit.Test;
@@ -30,8 +29,7 @@ public class BoardDataIni implements ApplicationRunner {
 	
 	@Test
 	public void testFindByTitleContainingOrContentContaining() {
-		List<Board> boardList =
-				boardRepo.findByTitleContainingOrContentContaining("10", "17");
+		boardRepo.findByTitleContainingOrContentContaining("10", "17");
 	}
 
 }

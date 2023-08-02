@@ -1,12 +1,13 @@
 package edu.pnu.controller;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,11 +24,10 @@ import edu.pnu.repository.BusanTourRepository;
 @CrossOrigin(origins = "http://localhost:3000")
 public class BusanController {
 
-	@Autowired
-	private final BusanPlaceRepository busanPlaceRepository;
-	private final BusanFoodRepository busanFoodRepository;
-	private final BusanTourRepository busanTourRepository;
-	private final BusanFestivalRepository busanFestivalRepository;
+	private BusanPlaceRepository busanPlaceRepository;
+	private BusanFoodRepository busanFoodRepository;
+	private BusanTourRepository busanTourRepository;
+	private BusanFestivalRepository busanFestivalRepository;
 
 	@Autowired
 	public BusanController(BusanPlaceRepository busanPlaceRepository, BusanFoodRepository busanFoodRepository,
@@ -58,21 +58,36 @@ public class BusanController {
 		return busanFestivalRepository.findAll();
 	}
 
+	@GetMapping("/busantour/{id}")
+	public Optional<BusanTour> getBusanTourById(@PathVariable Long id) {
+		return busanTourRepository.findById(id);
+	}
+
 	@GetMapping("/busanfestival/upcoming")
-    public List<BusanFestival> getUpcomingFestivals(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size) {
-        PageRequest pageRequest = PageRequest.of(page, size);
-        return busanFestivalRepository.findUpcomingFestivals(pageRequest);
-    }
+	public List<BusanFestival> getUpcomingFestivals(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "4") int size) {
+		PageRequest pageRequest = PageRequest.of(page, size);
+		return busanFestivalRepository.findUpcomingFestivals(pageRequest);
+	}
 
 	@GetMapping("/busantour/tags")
 	public List<String> getDistinctTags() {
 		return busanTourRepository.findDistinctTags();
 	}
 
-	@GetMapping("/busantour/bytags")
-	public List<BusanTour> getBusanTourByTags(@RequestParam("tags") String tags) {
-		List<String> tagList = Arrays.asList(tags.split(","));
-		List<BusanTour> filteredTours = busanTourRepository.findByAllTagsIn(tagList, (long) tagList.size());
-		return filteredTours;
+	@GetMapping("/busanfestival/{id}")
+	public Optional<BusanFestival> getBusanFestivalById(@PathVariable Long id) {
+		return busanFestivalRepository.findById(id);
 	}
+
+	@GetMapping("/busanplace/{id}")
+	public Optional<BusanPlace> getBusanPlaceById(@PathVariable Long id) {
+		return busanPlaceRepository.findById(id);
+	}
+
+	@GetMapping("/busanfood/{id}")
+	public Optional<BusanFood> getBusanFoodById(@PathVariable Long id) {
+		return busanFoodRepository.findById(id);
+	}
+
 }

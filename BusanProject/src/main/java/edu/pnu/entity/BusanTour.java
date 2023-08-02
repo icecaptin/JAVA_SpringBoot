@@ -33,5 +33,4 @@ public class BusanTour {
     private String middle_siz;
     private String main_img_n;
     private String main_img_t;
-    
 }

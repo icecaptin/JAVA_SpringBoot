@@ -24,7 +24,7 @@ public class BusanPlace {
     private String title;
     private String subtitle;
     private String addr1;
-    private String place_category;
+    private String category;
     private String tags;
     private String homepage_u;
     private String trfc_info;

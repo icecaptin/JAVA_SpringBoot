@@ -48,27 +48,6 @@ public class DynamicQueryTest {
 		}
 	}
 
-	private void test2(String... str) { // 배열로 들어온다. 그다음은 니가 알아서 해줘.
-		BooleanBuilder builder = new BooleanBuilder(); // 얘가 쿼리 누적하는 애
-		QBoard qboard = QBoard.board;
-
-		// 조건 걸 매개체. 골뱅이 엔티티 붙은 애들에서 자동으로. 자동으로 QBoard클래스 만들어준다.
-
-		if (str.equals("TITLE")) {
-			// select b from Board b where b.title like '%'||:searchKeyword||'%'
-			// 이 쿼리랑 똑같은 쿠리가 날라간다.
-			builder.and(qboard.title.like("%" + str + "%"));
-		} else if (str.equals("CONTENT")) {
-			// select b from Board b where b.content like '%'||:searchKeyword||'%'
-			builder.and(qboard.content.like("%" + str + "%"));
-		}
-
-		Iterable<Board> list = boardRepo.findAll(builder);
-		for (Board b : list) {
-			System.out.println("--->" + b);
-		}
-	}
-
 	private void test1(Map<String, String> map) {
 		BooleanBuilder builder = new BooleanBuilder();
 		QBoard qboard = QBoard.board;
