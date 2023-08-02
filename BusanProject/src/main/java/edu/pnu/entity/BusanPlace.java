@@ -14,12 +14,12 @@ public class BusanPlace {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
     private String gugun;
-    private String lat;
-    private String lng;
+    private Double lat;
+    private Double lng;
     private String travel_place;
     private String title;
     private String subtitle;

@@ -11,7 +11,7 @@ import lombok.Data;
 public class BusanTour {
 
     @Id
-    private Long id;
+    private Integer id;
 
     private String name;
     private String gugun;
