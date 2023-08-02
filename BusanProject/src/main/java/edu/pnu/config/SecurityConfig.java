@@ -32,7 +32,7 @@ public class SecurityConfig {
 		});
         http.csrf(csrf -> csrf.disable());
 		http.cors(cors -> cors.disable());
-		
+		//커밋테스트
 		
 		return http.build();
     }
