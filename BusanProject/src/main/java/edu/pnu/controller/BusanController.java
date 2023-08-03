@@ -1,6 +1,9 @@
 package edu.pnu.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,9 @@ public class BusanController {
 		this.busanTourRepository = busanTourRepository;
 		this.busanFestivalRepository = busanFestivalRepository;
 	}
+	
+	
+	//일반 restapi
 
 	@GetMapping("/busanplace")
 	public List<BusanPlace> getBusanPlaces() {
@@ -58,10 +64,7 @@ public class BusanController {
 		return busanFestivalRepository.findAll();
 	}
 
-	@GetMapping("/busantour/{id}")
-	public Optional<BusanTour> getBusanTourById(@PathVariable Long id) {
-		return busanTourRepository.findById(id);
-	}
+	//곧 축제 열리는거 최대 4개
 
 	@GetMapping("/busanfestival/upcoming")
 	public List<BusanFestival> getUpcomingFestivals(@RequestParam(defaultValue = "0") int page,
@@ -70,11 +73,10 @@ public class BusanController {
 		return busanFestivalRepository.findUpcomingFestivals(pageRequest);
 	}
 
-	@GetMapping("/busantour/tags")
-	public List<String> getDistinctTags() {
-		return busanTourRepository.findDistinctTags();
-	}
-
+	
+	//id값 입력시 불러오기
+	
+	
 	@GetMapping("/busanfestival/{id}")
 	public Optional<BusanFestival> getBusanFestivalById(@PathVariable Long id) {
 		return busanFestivalRepository.findById(id);
@@ -88,6 +90,71 @@ public class BusanController {
 	@GetMapping("/busanfood/{id}")
 	public Optional<BusanFood> getBusanFoodById(@PathVariable Long id) {
 		return busanFoodRepository.findById(id);
+	}
+	
+	@GetMapping("/busantour/{id}")
+	public Optional<BusanTour> getBusanTourById(@PathVariable Long id) {
+		return busanTourRepository.findById(id);
+	}
+	
+	
+	//태그 탑20
+
+	@GetMapping("/tourtagtop20")
+	public List<Map<String, Object>> getTop20TourTags() {
+		List<Object[]> top20Tags = busanTourRepository.findTop20TourTags();
+		List<Map<String, Object>> result = new ArrayList<>();
+
+		for (Object[] row : top20Tags) {
+			String tagWord = (String) row[0];
+			Long tagCount = (Long) row[1];
+
+			Map<String, Object> tagMap = new HashMap<>();
+			tagMap.put("tagWord", tagWord);
+			tagMap.put("tagCount", tagCount);
+
+			result.add(tagMap);
+		}
+
+		return result;
+	}
+	
+	@GetMapping("/placetagtop20")
+	public List<Map<String, Object>> getTop20PlaceTags() {
+		List<Object[]> top20Tags = busanPlaceRepository.findTop20PlaceTags();
+		List<Map<String, Object>> result = new ArrayList<>();
+
+		for (Object[] row : top20Tags) {
+			String tagWord = (String) row[0];
+			Long tagCount = (Long) row[1];
+
+			Map<String, Object> tagMap = new HashMap<>();
+			tagMap.put("tagWord", tagWord);
+			tagMap.put("tagCount", tagCount);
+
+			result.add(tagMap);
+		}
+
+		return result;
+	}
+	
+	@GetMapping("/festivaltagtop20")
+	public List<Map<String, Object>> getTop20FestivalTags() {
+		List<Object[]> top20Tags = busanFestivalRepository.findTop20FestivalTags();
+		List<Map<String, Object>> result = new ArrayList<>();
+
+		for (Object[] row : top20Tags) {
+			String tagWord = (String) row[0];
+			Long tagCount = (Long) row[1];
+
+			Map<String, Object> tagMap = new HashMap<>();
+			tagMap.put("tagWord", tagWord);
+			tagMap.put("tagCount", tagCount);
+
+			result.add(tagMap);
+		}
+
+		return result;
 	}
 
 }
