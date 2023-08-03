@@ -13,10 +13,9 @@ import lombok.Data;
 public class BusanUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+    private Long idx;
+    private String id;
     private String username;
     private String password;
-
-    // 필요한 추가 필드 (권한 등) 구성
 }
+

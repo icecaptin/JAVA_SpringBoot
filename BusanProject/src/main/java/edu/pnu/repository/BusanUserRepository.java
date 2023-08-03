@@ -9,5 +9,6 @@ import edu.pnu.entity.BusanUser;
 
 @Repository
 public interface BusanUserRepository extends JpaRepository<BusanUser, Long> {
+    Optional<BusanUser> findById(String id);
     Optional<BusanUser> findByUsername(String username);
 }

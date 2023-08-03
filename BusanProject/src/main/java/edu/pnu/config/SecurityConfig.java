@@ -1,43 +1,61 @@
 package edu.pnu.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import edu.pnu.service.BusanUserService;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
-	
-	@Autowired
-    private BusanUserService busanUserService;
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		// BCryptPasswordEncoder를 빈으로 등록하여 비밀번호 인코딩에 사용한다.
-		return new BCryptPasswordEncoder();
-	}
+public class SecurityConfig extends WebSecurityConfiguration {
 
     @Bean
-    public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
-    	http.authorizeHttpRequests(security -> {
-			security.requestMatchers("/**")
-					.permitAll();
-		});
-        http.csrf(csrf -> csrf.disable());
-		http.cors(cors -> cors.disable());
-		//커밋테스트
-		
-		return http.build();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(busanUserService).passwordEncoder(passwordEncoder());
-//    }
+    
+    
+	protected void configure(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(authorizeRequests ->
+                authorizeRequests
+                    .requestMatchers("/", "/**").permitAll()
+            )
+            .csrf(csrf -> csrf.disable());
+    }
+    
+	@Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(authorizeRequests ->
+                authorizeRequests
+                    .requestMatchers("/", "/**").permitAll()
+            )
+            .csrf(csrf -> csrf.disable());
+
+        return http.build();
+    }
+	
+	//CORS 설정
+	@Bean
+    public UrlBasedCorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+
+        config.setAllowCredentials(true);
+        config.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        config.setAllowedMethods(Arrays.asList("HEAD","POST","GET","DELETE","PUT"));
+        config.setAllowedHeaders(Arrays.asList("*"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +23,7 @@ import edu.pnu.repository.BusanPlaceRepository;
 import edu.pnu.repository.BusanTourRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class BusanController {
 
 	private BusanPlaceRepository busanPlaceRepository;
@@ -32,7 +31,6 @@ public class BusanController {
 	private BusanTourRepository busanTourRepository;
 	private BusanFestivalRepository busanFestivalRepository;
 
-	@Autowired
 	public BusanController(BusanPlaceRepository busanPlaceRepository, BusanFoodRepository busanFoodRepository,
 			BusanTourRepository busanTourRepository, BusanFestivalRepository busanFestivalRepository) {
 		this.busanPlaceRepository = busanPlaceRepository;
@@ -98,7 +96,7 @@ public class BusanController {
 	}
 	
 	
-	//태그 탑20
+	//태그 탑15
 
 	@GetMapping("/tourtagtop15")
 	public List<Map<String, Object>> getTop15TourTags() {

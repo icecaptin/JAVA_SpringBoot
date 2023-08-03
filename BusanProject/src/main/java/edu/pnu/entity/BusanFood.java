@@ -30,5 +30,6 @@ public class BusanFood {
     private String main_img_t;
     private String itemcntnts;    
     private String geometry;
+    private String likecnt;
     
 }
