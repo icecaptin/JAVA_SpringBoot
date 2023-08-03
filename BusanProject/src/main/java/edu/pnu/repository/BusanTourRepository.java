@@ -33,12 +33,7 @@ public interface BusanTourRepository extends JpaRepository<BusanTour, Long> {
             "    SELECT 12 UNION ALL " +
             "    SELECT 13 UNION ALL " +
             "    SELECT 14 UNION ALL " +
-            "    SELECT 15 UNION ALL " +
-            "    SELECT 16 UNION ALL " +
-            "    SELECT 17 UNION ALL " +
-            "    SELECT 18 UNION ALL " +
-            "    SELECT 19 UNION ALL " +
-            "    SELECT 20 " +
+            "    SELECT 15 " +
             "  ) AS numbers " +
             ") AS tag_words " +
             "WHERE tag_word <> '' " +
