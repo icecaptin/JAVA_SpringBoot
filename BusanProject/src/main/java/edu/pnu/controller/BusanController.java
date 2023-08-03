@@ -101,8 +101,8 @@ public class BusanController {
 	//태그 탑20
 
 	@GetMapping("/tourtagtop15")
-	public List<Map<String, Object>> getTop20TourTags() {
-		List<Object[]> top20Tags = busanTourRepository.findTop20TourTags();
+	public List<Map<String, Object>> getTop15TourTags() {
+		List<Object[]> top20Tags = busanTourRepository.findTop15TourTags();
 		List<Map<String, Object>> result = new ArrayList<>();
 
 		for (Object[] row : top20Tags) {
@@ -120,8 +120,8 @@ public class BusanController {
 	}
 	
 	@GetMapping("/placetagtop15")
-	public List<Map<String, Object>> getTop20PlaceTags() {
-		List<Object[]> top20Tags = busanPlaceRepository.findTop20PlaceTags();
+	public List<Map<String, Object>> getTop15PlaceTags() {
+		List<Object[]> top20Tags = busanPlaceRepository.findTop15PlaceTags();
 		List<Map<String, Object>> result = new ArrayList<>();
 
 		for (Object[] row : top20Tags) {
@@ -139,8 +139,8 @@ public class BusanController {
 	}
 	
 	@GetMapping("/festivaltagtop15")
-	public List<Map<String, Object>> getTop20FestivalTags() {
-		List<Object[]> top20Tags = busanFestivalRepository.findTop20FestivalTags();
+	public List<Map<String, Object>> getTop15FestivalTags() {
+		List<Object[]> top20Tags = busanFestivalRepository.findTop15FestivalTags();
 		List<Map<String, Object>> result = new ArrayList<>();
 
 		for (Object[] row : top20Tags) {

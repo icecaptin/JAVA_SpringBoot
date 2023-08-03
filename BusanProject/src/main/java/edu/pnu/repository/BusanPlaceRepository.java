@@ -40,5 +40,5 @@ public interface BusanPlaceRepository extends JpaRepository<BusanPlace, Long> {
             "ORDER BY tag_count DESC " +
             "LIMIT 20",
             nativeQuery = true)
-    List<Object[]> findTop20PlaceTags();
+    List<Object[]> findTop15PlaceTags();
 }

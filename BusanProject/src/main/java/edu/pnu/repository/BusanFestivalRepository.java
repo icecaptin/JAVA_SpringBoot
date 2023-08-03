@@ -43,5 +43,5 @@ public interface BusanFestivalRepository extends JpaRepository<BusanFestival, Lo
             "ORDER BY tag_count DESC " +
             "LIMIT 20",
             nativeQuery = true)
-    List<Object[]> findTop20FestivalTags();
+    List<Object[]> findTop15FestivalTags();
 }

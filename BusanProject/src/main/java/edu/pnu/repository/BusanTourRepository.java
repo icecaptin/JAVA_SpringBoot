@@ -41,5 +41,5 @@ public interface BusanTourRepository extends JpaRepository<BusanTour, Long> {
             "ORDER BY tag_count DESC " +
             "LIMIT 20",
             nativeQuery = true)
-    List<Object[]> findTop20TourTags();
+    List<Object[]> findTop15TourTags();
 }
