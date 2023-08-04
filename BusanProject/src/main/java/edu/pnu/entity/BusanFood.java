@@ -20,7 +20,7 @@ public class BusanFood {
     private String category;
     private Double lat;
     private Double lng;
-    private String address1;
+    private String addr1;
     private String url;
     private String usage_open;
     private String usage_close;
