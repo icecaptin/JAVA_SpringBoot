@@ -20,16 +20,15 @@ public class BusanFood {
     private String category;
     private Double lat;
     private Double lng;
-    private String addr1;
-    private String url;
+    private String addr;
     private String usage_open;
     private String usage_close;
     private String usage_breaktime;
     private String menu;
     private String main_img_n;
     private String main_img_t;
-    private String itemcntnts;    
+    private String itemcntnts;
     private String geometry;
-    private String likecnt;
+    private Integer likecnt;
     
 }

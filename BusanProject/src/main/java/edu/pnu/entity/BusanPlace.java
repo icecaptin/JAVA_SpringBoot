@@ -20,10 +20,9 @@ public class BusanPlace {
     private String gugun;
     private Double lat;
     private Double lng;
-    private String travel_place;
     private String title;
     private String subtitle;
-    private String addr1;
+    private String addr;
     private String category;
     private String tags;
     private String homepage_u;
@@ -35,6 +34,7 @@ public class BusanPlace {
     private String middle_siz;
     private String main_img_n;
     private String main_img_t;
-    private String itemcntnts;    
+    private String itemcntnts;
     private String geometry;
+    private Integer likecnt;
 }

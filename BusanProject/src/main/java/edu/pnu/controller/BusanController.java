@@ -1,9 +1,6 @@
 package edu.pnu.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.data.domain.PageRequest;
@@ -76,83 +73,83 @@ public class BusanController {
 	
 	
 	@GetMapping("/busanfestival/{id}")
-	public Optional<BusanFestival> getBusanFestivalById(@PathVariable Long id) {
+	public Optional<BusanFestival> getBusanFestivalById(@PathVariable Integer id) {
 		return busanFestivalRepository.findById(id);
 	}
 
 	@GetMapping("/busanplace/{id}")
-	public Optional<BusanPlace> getBusanPlaceById(@PathVariable Long id) {
+	public Optional<BusanPlace> getBusanPlaceById(@PathVariable Integer id) {
 		return busanPlaceRepository.findById(id);
 	}
 
 	@GetMapping("/busanfood/{id}")
-	public Optional<BusanFood> getBusanFoodById(@PathVariable Long id) {
+	public Optional<BusanFood> getBusanFoodById(@PathVariable Integer id) {
 		return busanFoodRepository.findById(id);
 	}
 	
 	@GetMapping("/busantour/{id}")
-	public Optional<BusanTour> getBusanTourById(@PathVariable Long id) {
+	public Optional<BusanTour> getBusanTourById(@PathVariable Integer id) {
 		return busanTourRepository.findById(id);
 	}
 	
 	
-	//태그 탑15
+	//태그 탑15 --잠시 보류
 
-	@GetMapping("/tourtagtop15")
-	public List<Map<String, Object>> getTop15TourTags() {
-		List<Object[]> top20Tags = busanTourRepository.findTop15TourTags();
-		List<Map<String, Object>> result = new ArrayList<>();
-
-		for (Object[] row : top20Tags) {
-			String tagWord = (String) row[0];
-			Long tagCount = (Long) row[1];
-
-			Map<String, Object> tagMap = new HashMap<>();
-			tagMap.put("tagWord", tagWord);
-			tagMap.put("tagCount", tagCount);
-
-			result.add(tagMap);
-		}
-
-		return result;
-	}
-	
-	@GetMapping("/placetagtop15")
-	public List<Map<String, Object>> getTop15PlaceTags() {
-		List<Object[]> top20Tags = busanPlaceRepository.findTop15PlaceTags();
-		List<Map<String, Object>> result = new ArrayList<>();
-
-		for (Object[] row : top20Tags) {
-			String tagWord = (String) row[0];
-			Long tagCount = (Long) row[1];
-
-			Map<String, Object> tagMap = new HashMap<>();
-			tagMap.put("tagWord", tagWord);
-			tagMap.put("tagCount", tagCount);
-
-			result.add(tagMap);
-		}
-
-		return result;
-	}
-	
-	@GetMapping("/festivaltagtop15")
-	public List<Map<String, Object>> getTop15FestivalTags() {
-		List<Object[]> top20Tags = busanFestivalRepository.findTop15FestivalTags();
-		List<Map<String, Object>> result = new ArrayList<>();
-
-		for (Object[] row : top20Tags) {
-			String tagWord = (String) row[0];
-			Long tagCount = (Long) row[1];
-
-			Map<String, Object> tagMap = new HashMap<>();
-			tagMap.put("tagWord", tagWord);
-			tagMap.put("tagCount", tagCount);
-
-			result.add(tagMap);
-		}
-
-		return result;
-	}
+//	@GetMapping("/tourtagtop15")
+//	public List<Map<String, Object>> getTop15TourTags() {
+//		List<Object[]> top20Tags = busanTourRepository.findTop15TourTags();
+//		List<Map<String, Object>> result = new ArrayList<>();
+//
+//		for (Object[] row : top20Tags) {
+//			String tagWord = (String) row[0];
+//			Long tagCount = (Long) row[1];
+//
+//			Map<String, Object> tagMap = new HashMap<>();
+//			tagMap.put("tagWord", tagWord);
+//			tagMap.put("tagCount", tagCount);
+//
+//			result.add(tagMap);
+//		}
+//
+//		return result;
+//	}
+//	
+//	@GetMapping("/placetagtop15")
+//	public List<Map<String, Object>> getTop15PlaceTags() {
+//		List<Object[]> top20Tags = busanPlaceRepository.findTop15PlaceTags();
+//		List<Map<String, Object>> result = new ArrayList<>();
+//
+//		for (Object[] row : top20Tags) {
+//			String tagWord = (String) row[0];
+//			Long tagCount = (Long) row[1];
+//
+//			Map<String, Object> tagMap = new HashMap<>();
+//			tagMap.put("tagWord", tagWord);
+//			tagMap.put("tagCount", tagCount);
+//
+//			result.add(tagMap);
+//		}
+//
+//		return result;
+//	}
+//	
+//	@GetMapping("/festivaltagtop15")
+//	public List<Map<String, Object>> getTop15FestivalTags() {
+//		List<Object[]> top20Tags = busanFestivalRepository.findTop15FestivalTags();
+//		List<Map<String, Object>> result = new ArrayList<>();
+//
+//		for (Object[] row : top20Tags) {
+//			String tagWord = (String) row[0];
+//			Long tagCount = (Long) row[1];
+//
+//			Map<String, Object> tagMap = new HashMap<>();
+//			tagMap.put("tagWord", tagWord);
+//			tagMap.put("tagCount", tagCount);
+//
+//			result.add(tagMap);
+//		}
+//
+//		return result;
+//	}
 
 }

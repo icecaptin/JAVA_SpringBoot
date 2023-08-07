@@ -22,15 +22,17 @@ public class BusanFestival {
 	private String gugun;
 	private String name;
 	private String subname;
-	private String type;
+	private String category;
 
 	@Column(name = "start_date")
 	private LocalDate startDate;
-	private String end_date;
+	@Column(name = "end_date")
+	private LocalDate endDate;
 	private String place;
 	private String hosting_method;
 	private String tags;
-	private String main_img;
+	private String main_img_n;
+	private Integer likecnt;
 
 	// 'start_date' 프로퍼티의 Getter와 Setter
 	public LocalDate getStartDate() {
@@ -39,6 +41,14 @@ public class BusanFestival {
 
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
+	}
+	
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 
 }

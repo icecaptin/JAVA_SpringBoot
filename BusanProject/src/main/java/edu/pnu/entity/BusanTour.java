@@ -15,7 +15,7 @@ public class BusanTour {
 
     private String name;
     private String gugun;
-    private String cate2_nm;
+    private String category;
     private Double lat;
     private Double lng;
     private String plage;
@@ -23,8 +23,7 @@ public class BusanTour {
     private String title;
     private String subtitle;
     private String main_place;
-    private String addr1;
-    private String homepage;
+    private String addr;
     private String trfc_info;
     private String usage_day;    
     private String hldy_info;
@@ -33,4 +32,5 @@ public class BusanTour {
     private String middle_siz;
     private String main_img_n;
     private String main_img_t;
+    private Integer likecnt;
 }
