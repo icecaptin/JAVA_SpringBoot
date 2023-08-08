@@ -16,7 +16,7 @@ public interface BusanFestivalRepository extends JpaRepository<BusanFestival, In
     
     BusanFestival findById(long id);
     
-    @Query("SELECT p.tags FROM BusanFestival p WHERE p.tags IS NOT NULL")
+    @Query("SELECT DISTINCT p.tags FROM BusanFestival p WHERE p.tags IS NOT NULL")
     List<String> findAllTags();
     
 //    @Query(value = """

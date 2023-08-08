@@ -14,7 +14,7 @@ public interface BusanTourRepository extends JpaRepository<BusanTour, Integer> {
     @Query("SELECT DISTINCT t.tags FROM BusanTour t")
     List<String> findDistinctTags();
     
-    @Query("SELECT t.tags FROM BusanTour t WHERE t.tags IS NOT NULL")
+    @Query("SELECT DISTINCT t.tags FROM BusanTour t WHERE t.tags IS NOT NULL")
     List<String> findAllTags();
 
     
