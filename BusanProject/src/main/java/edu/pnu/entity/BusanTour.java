@@ -33,4 +33,6 @@ public class BusanTour {
     private String main_img_n;
     private String main_img_t;
     private Integer likecnt;
+    
+    
 }
