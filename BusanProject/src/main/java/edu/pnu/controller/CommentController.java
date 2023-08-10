@@ -150,31 +150,30 @@ public class CommentController {
 	// 댓글 삭제
 	@DeleteMapping("/deleteComment/{id}")
 	public ResponseEntity<String> deleteComment(@PathVariable Integer id, @RequestBody Map<String, String> authInfo) {
-	    Optional<BusanComment> commentToDelete = busanCommentRepository.findById(id);
-	    if (commentToDelete.isPresent()) {
-	        BusanComment comment = commentToDelete.get();
+		Optional<BusanComment> commentToDelete = busanCommentRepository.findById(id);
+		if (commentToDelete.isPresent()) {
+			BusanComment comment = commentToDelete.get();
 
-	        // Check if user_id in comment matches the authenticated user's ID
-	        String username = authInfo.get("username");
-	        BusanUser authenticatedUser = busanUserRepository.findByUsername(username).orElse(null);
-	        if (authenticatedUser != null && comment.getUser().getId().equals(authenticatedUser.getId())) {
-	            if (comment.getFood() != null) {
-	                comment.setFood(null);
-	            } else if (comment.getPlace() != null) {
-	                comment.setPlace(null);
-	            } else if (comment.getFestival() != null) {
-	                comment.setFestival(null);
-	            } else if (comment.getTour() != null) {
-	                comment.setTour(null);
-	            }
-	            busanCommentRepository.delete(comment);
-	            return ResponseEntity.ok("Comment deleted successfully");
-	        } else {
-	            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Unauthorized to delete this comment");
-	        }
-	    }
-	    return ResponseEntity.notFound().build();
+			// Check if user_id in comment matches the authenticated user's ID
+			String username = authInfo.get("username");
+			BusanUser authenticatedUser = busanUserRepository.findByUsername(username).orElse(null);
+			if (authenticatedUser != null && comment.getUser().getId().equals(authenticatedUser.getId())) {
+				if (comment.getFood() != null) {
+					comment.setFood(null);
+				} else if (comment.getPlace() != null) {
+					comment.setPlace(null);
+				} else if (comment.getFestival() != null) {
+					comment.setFestival(null);
+				} else if (comment.getTour() != null) {
+					comment.setTour(null);
+				}
+				busanCommentRepository.delete(comment);
+				return ResponseEntity.ok("Comment deleted successfully");
+			} else {
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Unauthorized to delete this comment");
+			}
+		}
+		return ResponseEntity.notFound().build();
 	}
-
 
 }
