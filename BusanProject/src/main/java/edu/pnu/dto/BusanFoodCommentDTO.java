@@ -31,6 +31,5 @@ public class BusanFoodCommentDTO {
 	public void setFoodComments(List<String> foodComments) {
 		this.foodComments = foodComments;
 	}
-
-    // Getter and Setter methods
+	
 }

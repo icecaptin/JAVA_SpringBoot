@@ -15,15 +15,19 @@ public class BusanTour {
 
     private String name;
     private String gugun;
-    private String category;
     private Double lat;
     private Double lng;
     private String plage;
+    private String cate_with;
+    private String cate_season;
+    private String cate_nature;
+    private String cate_plan;
     private String tags;
     private String title;
     private String subtitle;
     private String main_place;
     private String addr;
+    private String itemcntnts;
     private String trfc_info;
     private String usage_day;    
     private String hldy_info;

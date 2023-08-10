@@ -20,42 +20,70 @@ import lombok.Data;
 @Entity
 @Table(name = "busancomments") // 테이블명 지정
 public class BusanComment {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	private Integer id;
 
-    private String foodcomment;
-    private String placecomment;
-    private String tourcomment;
-    private String festivalcomment;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, updatable = false)
-    @CreationTimestamp
-    private Date createdAt;
-    
-    @ManyToOne
-    @JoinColumn(name = "food_id") // 실제 외래키 칼럼명에 맞게 수정
-    private BusanFood food;
-    
-    @ManyToOne
-    @JoinColumn(name = "place_id") // 실제 외래키 칼럼명에 맞게 수정
-    private BusanPlace place;
-    
-    public String getFoodcomment() {
-        return foodcomment;
-    }
+	private String foodcomment;
+	private String placecomment;
+	private String tourcomment;
+	private String festivalcomment;
 
-    public void setFoodcomment(String foodcomment) {
-        this.foodcomment = foodcomment;
-    }
-    
-    public String getPlacecomment() {
-        return placecomment;
-    }
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_at", nullable = false, updatable = false)
+	@CreationTimestamp
+	private Date createdAt;
 
-    public void setPlacecomment(String placecomment) {
-        this.placecomment = placecomment;
-    }
+	@ManyToOne
+	@JoinColumn(name = "food_id")
+	private BusanFood food;
+
+	@ManyToOne
+	@JoinColumn(name = "place_id")
+	private BusanPlace place;
+
+	@ManyToOne
+	@JoinColumn(name = "festival_id")
+	private BusanFestival festival;
+	
+	@ManyToOne
+	@JoinColumn(name = "tour_id")
+	private BusanTour tour;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private BusanUser user;
+
+	public String getFoodcomment() {
+		return foodcomment;
+	}
+
+	public void setFoodcomment(String foodcomment) {
+		this.foodcomment = foodcomment;
+	}
+
+	public String getPlacecomment() {
+		return placecomment;
+	}
+
+	public void setPlacecomment(String placecomment) {
+		this.placecomment = placecomment;
+	}
+
+	public String getFestivalcomment() {
+		return festivalcomment;
+	}
+
+	public void setFestivalcomment(String festivalcomment) {
+		this.festivalcomment = festivalcomment;
+	}
+	
+	public String getTourcomment() {
+		return tourcomment;
+	}
+
+	public void setTourcomment(String tourcomment) {
+		this.tourcomment = tourcomment;
+	}
 }
