@@ -28,7 +28,7 @@ public class CommentController {
 	private BusanUserRepository busanUserRepository;
 
 	@GetMapping("/{type}/{typeid}") // ex) /food/25
-	public ResponseEntity<?> getCommentByTypeAndPostId(@PathVariable String type, @PathVariable String typeid) {
+	public ResponseEntity<?> getCommentByTypeAndPostId(@PathVariable String type, @PathVariable Integer typeid) {
 		BusanComment comment = busanCommentRepository.findByTypeAndTypeId(type, typeid);
 		System.out.println("asdasf");
 		if (comment != null) {

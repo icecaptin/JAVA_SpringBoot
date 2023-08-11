@@ -31,7 +31,7 @@ public class BusanComment {
     @CreationTimestamp
     private Date createdAt;
     private String type;
-    private String typeId;
+    private Integer typeId;
 }
 
 
