@@ -51,12 +51,13 @@ public class AuthController {
 		String username = user.getUsername();
 
 		// Username 글자수 및 패턴 검사
-		if (username.length() < 3 || username.length() > 10) {
-			return ResponseEntity.status(400).body("Username length must be between 3 and 10 characters");
+		if (username.length() < 3 || username.length() > 15) {
+			return ResponseEntity.status(400).body("Username length must be between 3 and 15 characters");
 		}
-		if (!username.matches("^[a-zA-Z가-힣]*$")) {
-			return ResponseEntity.status(400).body("Username can only contain Korean and English letters");
+		if (!username.matches("^[a-zA-Z0-9]*$")) {
+		    return ResponseEntity.status(400).body("Username can only contain English letters and numbers");
 		}
+
 
 		if (userRepository.existsById(username)) {
 			return ResponseEntity.status(409).body("ID already exists");
