@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +41,9 @@ public class CommentController {
 
 	@PostMapping("/add")
 	public ResponseEntity<String> addComment(@RequestBody BusanComment comment) {
-		comment.setUsername("yang");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String authenticatedUsername = authentication.getName();
+		comment.setUsername(authenticatedUsername);
 		comment.setCreatedAt(new Date());
 		busanCommentRepository.save(comment);
 		return ResponseEntity.ok("Comment added successfully");
