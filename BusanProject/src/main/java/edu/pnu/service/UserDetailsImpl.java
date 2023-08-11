@@ -1,14 +1,15 @@
 package edu.pnu.service;
 
-import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import edu.pnu.entity.BusanUser;
+import edu.pnu.entity.Busanuser;
 import edu.pnu.repository.BusanUserRepository;
 
 @Service
@@ -18,14 +19,16 @@ public class UserDetailsImpl implements UserDetailsService {
     private BusanUserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        BusanUser busanuser = userRepository.findById(id)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + id));
-
-        return new org.springframework.security.core.userdetails.User(
-        		busanuser.getId(),
-        		busanuser.getPassword(),
-                new ArrayList<>()
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Busanuser> option = userRepository.findById(username);
+        if (!option.isPresent()) {
+        	return null;
+        }
+        Busanuser user = option.get();
+        return new User(
+        		user.getUsername(),
+        		user.getPassword(),
+        		user.getAuthorities()
         );
     }
 }

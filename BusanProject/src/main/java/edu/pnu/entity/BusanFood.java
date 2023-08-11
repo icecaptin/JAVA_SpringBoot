@@ -3,6 +3,7 @@ package edu.pnu.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -30,5 +31,10 @@ public class BusanFood {
     private String itemcntnts;
     private String geometry;
     private Integer likecnt;
+    private String type;
+    
+    public String getPostid() {
+        return getId().toString();
+    }
     
 }

@@ -15,40 +15,46 @@ import lombok.Data;
 @Table(name = "busanfestival")
 public class BusanFestival {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	private String gugun;
-	private String name;
-	private String subname;
-	private String category;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@Column(name = "start_date")
-	private LocalDate startDate;
-	@Column(name = "end_date")
-	private LocalDate endDate;
-	private String place;
-	private String hosting_method;
-	private String tags;
-	private String main_img_n;
-	private Integer likecnt;
+    private String gugun;
+    private String name;
+    private String subname;
+    private String category;
 
-	// 'start_date' 프로퍼티의 Getter와 Setter
-	public LocalDate getStartDate() {
-		return startDate;
-	}
+    @Column(name = "start_date")
+    private LocalDate startDate;
+    @Column(name = "end_date")
+    private LocalDate endDate;
+    private String place;
+    private String hosting_method;
+    private String tags;
+    private String main_img_n;
+    private Integer likecnt;
+    private String type;
 
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-	
-	public LocalDate getEndDate() {
-		return endDate;
-	}
+    
 
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
+    // 'start_date' 프로퍼티의 Getter와 Setter
+    public LocalDate getStartDate() {
+        return startDate;
+    }
 
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+    
+    public String getPostid() {
+        return getId().toString();
+    }
 }

@@ -21,9 +21,6 @@ public class SecurityConfig {
 	@Autowired
 	private MemberRepository memberRepository;
 
-	@Autowired
-	private AuthenticationConfiguration authConfig;
-
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		// BCryptPasswordEncoder를 빈으로 등록하여 비밀번호 인코딩에 사용한다.
@@ -44,7 +41,7 @@ public class SecurityConfig {
 		http.formLogin(frmLogin -> frmLogin.disable()); // Form을 이용한 로그인을 사용하지 않겠다는 설정
 		http.sessionManagement(ssmg -> ssmg.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // 시큐리티 세션을 만들지 않겠다고 설정
 
-		http.addFilter(new JWTAuthenticationFilter(authConfig.getAuthenticationManager()));
+		http.addFilter(new JWTAuthenticationFilter(null));
 		return http.build();
 	}
 }

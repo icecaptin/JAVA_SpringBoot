@@ -37,4 +37,9 @@ public class BusanPlace {
     private String itemcntnts;
     private String geometry;
     private Integer likecnt;
+    private String type;
+    
+    public String getPostid() {
+        return getId().toString();
+    }
 }
