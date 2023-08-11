@@ -9,5 +9,4 @@ import edu.pnu.entity.BusanComment;
 public interface BusanCommentRepository extends JpaRepository<BusanComment, Integer> {
 
 	BusanComment findByTypeAndTypeId(String type, String typeid);
-//    BusanComment findByTypeAndPostid(String type, String postid);
 }
