@@ -1,6 +1,7 @@
 package edu.pnu.controller;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,7 @@ public class CommentController {
 
 	@GetMapping("/{type}/{typeid}") // ex) /food/25
 	public ResponseEntity<?> getCommentByTypeAndPostId(@PathVariable String type, @PathVariable Integer typeid) {
-		BusanComment comment = busanCommentRepository.findByTypeAndTypeId(type, typeid);
-		System.out.println("asdasf");
+		List<BusanComment> comment = busanCommentRepository.findByTypeAndTypeId(type, typeid);
 		if (comment != null) {
 			return ResponseEntity.ok(comment);
 		}
@@ -41,9 +41,9 @@ public class CommentController {
 
 	@PostMapping("/add")
 	public ResponseEntity<String> addComment(@RequestBody BusanComment comment) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    String authenticatedUsername = authentication.getName();
-		comment.setUsername(authenticatedUsername);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String authUsername = auth.getName();
+		comment.setUsername(authUsername);
 		comment.setCreatedAt(new Date());
 		busanCommentRepository.save(comment);
 		return ResponseEntity.ok("Comment added successfully");
@@ -64,14 +64,13 @@ public class CommentController {
 		return ResponseEntity.notFound().build();
 	}
 
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteComment(@PathVariable Integer id) {
-        BusanComment commentToDelete = busanCommentRepository.findById(id).orElse(null);
-        if (commentToDelete != null) {
-            busanCommentRepository.delete(commentToDelete);
-            return ResponseEntity.ok("Comment deleted successfully");
-        }
-        return ResponseEntity.notFound().build();
-    }
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<String> deleteComment(@PathVariable Integer id) {
+		BusanComment commentToDelete = busanCommentRepository.findById(id).orElse(null);
+		if (commentToDelete != null) {
+			busanCommentRepository.delete(commentToDelete);
+			return ResponseEntity.ok("Comment deleted successfully");
+		}
+		return ResponseEntity.notFound().build();
+	}
 }

@@ -29,11 +29,20 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable());
 		
-
 		http.authorizeHttpRequests(security -> security
-					.requestMatchers("/comment/**").authenticated()
-					.requestMatchers("/admin/**").hasRole("ADMIN")
-					.anyRequest().permitAll());
+	               .requestMatchers("/comment/add").authenticated()
+	               .requestMatchers("/comment/**").permitAll()
+	               .requestMatchers("/admin/**").hasRole("ADMIN")
+	               .anyRequest().permitAll());
+		
+
+//		http.authorizeHttpRequests(security -> security
+//			    .requestMatchers("/comment/**").permitAll() // 댓글 경로에 대해서는 누구나 접근 허용
+//			    .requestMatchers("/admin/**").hasRole("ADMIN") // 관리자 경로에 대해서는 ADMIN 역할이 있는 사용자만 접근 허용
+//			    .anyRequest().permitAll() // 나머지 모든 요청에 대해서는 누구나 접근 허용
+//			);
+
+
 
 		http.formLogin(frmLogin -> frmLogin.disable()); // 폼 로그인 기반 비활성화
 		http.sessionManagement(ssmg -> ssmg.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // 세션 없애기. jwt 할거.
