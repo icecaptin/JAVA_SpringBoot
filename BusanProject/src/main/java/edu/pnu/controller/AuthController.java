@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,27 +24,35 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 public class AuthController {
-	
+
 	private final AuthenticationManager authManager;
 	private final BusanUserRepository userRepository;
 	private final BCryptPasswordEncoder encoder;
-	
+
 	@Value("${jwt.secretKey}")
 	private String secretKey;
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody Busanuser user) {
-		System.out.println("user: " + user);
-		
-		UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
-		Authentication auth = authManager.authenticate(upat);
-		String token = JWT.create().withClaim("username", user.getUsername())
-				.withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 10))
-				.sign(Algorithm.HMAC256(secretKey));
-        
-        System.out.println("token: " + token);
-		
-		return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, "Bearer " + token).build();
+		if (user.getUsername() == null || user.getPassword() == null) {
+			return ResponseEntity.badRequest().body("Please Enter the Username or Password.");
+		}
+
+		try {
+			UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(user.getUsername(),
+					user.getPassword());
+			Authentication auth = authManager.authenticate(upat);
+
+			String token = JWT.create().withClaim("username", user.getUsername())
+					.withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 10))
+					.sign(Algorithm.HMAC256(secretKey));
+
+			System.out.println("token: " + token);
+
+			return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, "Bearer " + token).build();
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Wrong Username or Password");
+		}
 	}
 
 	@PostMapping("/signup")
@@ -55,9 +64,8 @@ public class AuthController {
 			return ResponseEntity.status(400).body("Username length must be between 3 and 15 characters");
 		}
 		if (!username.matches("^[a-zA-Z0-9]*$")) {
-		    return ResponseEntity.status(400).body("Username can only contain English letters and numbers");
+			return ResponseEntity.status(400).body("Username can only contain English letters and numbers");
 		}
-
 
 		if (userRepository.existsById(username)) {
 			return ResponseEntity.status(409).body("ID already exists");
