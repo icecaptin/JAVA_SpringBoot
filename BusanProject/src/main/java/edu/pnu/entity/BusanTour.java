@@ -1,5 +1,6 @@
 package edu.pnu.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
@@ -28,6 +29,8 @@ public class BusanTour {
     private String subtitle;
     private String main_place;
     private String addr;
+    
+    @Column(length = 1000)
     private String itemcntnts;
     private String trfc_info;
     private String usage_day;    
